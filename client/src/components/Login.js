@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { useFetch } from "../utils/apiHook";
+import { api } from "../utils/api";
 import { useHistory } from "react-router-dom";
 
 const Login = () => {
@@ -15,8 +16,13 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // api.post("/api/login", form).then((res) => console.log(res));
-    // localStorage.setItem("token", data.payload);
+    api()
+      .post("/api/login", form)
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("token", res.data.payload);
+        history.push("/bubblePage");
+      });
   };
 
   return (
