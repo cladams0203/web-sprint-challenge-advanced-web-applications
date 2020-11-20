@@ -7,6 +7,7 @@ import ColorList from "./ColorList";
 const BubblePage = () => {
   const [colorList, setColorList] = useState([]);
   const [res] = useFetch("/api/colors");
+  console.log(colorList);
   useEffect(() => {
     res && setColorList(res.data);
   }, [res]);
